@@ -10,6 +10,8 @@ public class UnitActionSystem : MonoBehaviour
     [SerializeField] private Unit selectedUnit;
     [SerializeField] private LayerMask unitLayerMask;
 
+    private bool isBusy;
+
     private void Awake()
     {
         //This is a singleton implementation. Instance is considered a singleton
@@ -26,12 +28,37 @@ public class UnitActionSystem : MonoBehaviour
 
     private void Update() 
     {
+        if (isBusy) return;
 
         if (Input.GetMouseButtonDown(0))
         {
             if (TryHandleUnitSelection()) return;
-            selectedUnit.Move(MouseWorld.GetPosition());
+
+            GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
+
+            if (selectedUnit.GetMoveAction().IsValidActionGridPosition(mouseGridPosition))
+            {
+                SetBusy();
+                selectedUnit.GetMoveAction().Move(mouseGridPosition, ClearBusy);
+            }
+            
         }
+
+        if (Input.GetMouseButtonDown(1))
+        {
+            SetBusy();
+            selectedUnit.GetSpinAction().Spin(ClearBusy);
+        }
+    }
+
+    private void SetBusy()
+    {
+        isBusy = true;
+    }
+
+    private void ClearBusy()
+    {
+        isBusy = false;
     }
 
     private bool TryHandleUnitSelection()
