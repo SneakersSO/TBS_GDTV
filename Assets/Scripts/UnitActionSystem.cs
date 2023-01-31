@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class UnitActionSystem : MonoBehaviour
 {
@@ -35,6 +36,8 @@ public class UnitActionSystem : MonoBehaviour
     private void Update() 
     {
         if (isBusy) return;
+
+        if (EventSystem.current.IsPointerOverGameObject()) return;
 
         if (TryHandleUnitSelection()) return;
         
@@ -75,6 +78,10 @@ public class UnitActionSystem : MonoBehaviour
             {
                 if (raycastHit.transform.TryGetComponent<Unit>(out Unit unit)) 
                 {
+                    if (unit == selectedUnit)
+                    {
+                        return false; //Selected Unit is the same as the currently selected unit.
+                    }
                     SetSelectedUnit(unit);
                     return true;
                 }
@@ -91,13 +98,7 @@ public class UnitActionSystem : MonoBehaviour
         OnSelectedUnitChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    public void SetSelectedAction(BaseAction baseAction)
-    {
-        selectedAction = baseAction;
-    }
-
-    public Unit GetSelectedUnit()
-    {
-        return selectedUnit;
-    }
+    public void SetSelectedAction(BaseAction baseAction) => selectedAction = baseAction;
+    public BaseAction GetSelectedAction() => selectedAction;
+    public Unit GetSelectedUnit() => selectedUnit;
 }
