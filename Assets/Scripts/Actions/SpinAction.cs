@@ -14,8 +14,9 @@ public class SpinAction : BaseAction
         transform.eulerAngles += new Vector3(0, spinAddAmount, 0);
         
         totalSpinAmount += spinAddAmount;
-        if (spinAddAmount >= 360) 
+        if (totalSpinAmount >= 360f) 
         {
+            Debug.Log("Done Spinning");
             isActive = false;
             onActionComplete();
         }
@@ -26,4 +27,6 @@ public class SpinAction : BaseAction
         isActive = true;
         totalSpinAmount = 0f;
     }
+
+    public override string GetActionName() => "Spin";
 }

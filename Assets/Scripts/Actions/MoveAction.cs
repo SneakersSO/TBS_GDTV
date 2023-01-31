@@ -22,15 +22,16 @@ public class MoveAction : BaseAction
         if (!isActive) return;
 
         Vector3 moveDirection = (targetPosition - transform.position).normalized;
+
         float stoppingDistance = .1f;
-        
         if(Vector3.Distance(transform.position, targetPosition) > stoppingDistance)
         {
             float moveSpeed = 4f;
             transform.position += moveDirection * moveSpeed * Time.deltaTime;
 
             unitAnimator.SetBool("IsWalking", true);
-        } else
+        } 
+        else
         {
             unitAnimator.SetBool("IsWalking", false);
             isActive = false;
@@ -89,4 +90,6 @@ public class MoveAction : BaseAction
 
         return validGridPositionList;
     }
+
+    public override string GetActionName() => "Move";
 }
