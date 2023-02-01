@@ -86,5 +86,10 @@ public class MoveAction : BaseAction
         return validGridPositionList;
     }
 
+    public override int GetActionPointsCost()
+    {
+        return 1;
+    }
+
     public override string GetActionName() => "Move";
 }
