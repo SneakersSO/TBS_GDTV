@@ -16,16 +16,13 @@ public class SpinAction : BaseAction
         totalSpinAmount += spinAddAmount;
         if (totalSpinAmount >= 360f) 
         {
-            Debug.Log("Done Spinning");
-            isActive = false;
-            onActionComplete();
+            ActionComplete();
         }
     }
     public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
     {
-        this.onActionComplete = onActionComplete;
-        isActive = true;
         totalSpinAmount = 0f;
+        ActionStart(onActionComplete);
     }
 
     public override string GetActionName() => "Spin";
@@ -45,4 +42,12 @@ public class SpinAction : BaseAction
     {
         return 2;
     }
+
+     public override EnemyAIAction GetEnemyAIAction(GridPosition gridPosition)
+     {
+        return new EnemyAIAction {
+            gridPosition = gridPosition,
+            actionValue = 0,
+        };
+     }
 }
