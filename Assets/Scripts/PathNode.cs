@@ -15,10 +15,17 @@ public class PathNode
     public PathNode(GridPosition gridPosition)
     {
         this.gridPosition = gridPosition;
-    }
+    } 
 
     public override string ToString() => gridPosition.ToString();
     public int GetGCost() => gCost;
     public int GetFCost() => fCost;
     public int GetHCost() => hCost;
+    public void SetGCost(int gCost) => this.gCost = gCost;
+    public void SetHCost(int hCost) => this.hCost = hCost;
+    public void CalculateFCost() => fCost = gCost + hCost;
+    public void ResetCameFromPathNode() => cameFromPathNode = null;
+    public void SetCameFromPathNode(PathNode pathNode) => cameFromPathNode = pathNode;
+    public PathNode GetCameFromPathNode() => cameFromPathNode;
+    public GridPosition GetGridPosition() => gridPosition;
 }
