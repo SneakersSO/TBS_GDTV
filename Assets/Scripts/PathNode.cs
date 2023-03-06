@@ -11,6 +11,7 @@ public class PathNode
 
     //Stores the reference from the PathNode the unit came from in order to reach this PathNode that its currently on.
     private PathNode cameFromPathNode;
+    private bool isWalkable = true;
 
     public PathNode(GridPosition gridPosition)
     {
@@ -21,6 +22,8 @@ public class PathNode
     public int GetGCost() => gCost;
     public int GetFCost() => fCost;
     public int GetHCost() => hCost;
+    public bool GetIsWalkable() => isWalkable;
+    public void SetIsWalkable(bool isWalkable) => this.isWalkable = isWalkable;
     public void SetGCost(int gCost) => this.gCost = gCost;
     public void SetHCost(int hCost) => this.hCost = hCost;
     public void CalculateFCost() => fCost = gCost + hCost;
