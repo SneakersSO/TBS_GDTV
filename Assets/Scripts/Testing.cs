@@ -15,6 +15,36 @@ public class Testing : MonoBehaviour
     {
         if(Input.GetKeyDown(KeyCode.T))
         {
+        }
+    }
+
+    //public Action<int>();
+    //public Func<int>();
+}
+
+/*GENERICS*/
+//With the 'where' keyword, you can make it so the variable type T has to specifically extend from a class
+//Or else the compiler will reject it. In the below example, T must be extended from BaseAction
+/*public class MyClass
+{
+    private int i;
+
+    public MyClass(int i) 
+    {
+        this.i = i;
+        Debug.Log(i);
+    }
+
+    public void Testing<T>(T t) 
+    {
+        Debug.Log(t);
+    }
+}*/
+
+/*Sample Code to calculate pathfinding by pressing keyboard T on a pathfinding node
+
+if(Input.GetKeyDown(KeyCode.T))
+        {
             GridPosition mouseGridPosition = LevelGrid.Instance.GetGridPosition(MouseWorld.GetPosition());
             GridPosition startGridPosition = new GridPosition(0, 0);
 
@@ -29,28 +59,5 @@ public class Testing : MonoBehaviour
                     10f
                 );
             } 
-        }
-    }
-
-    //public Action<int>();
-    //public Func<int>();
-}
-
-/*GENERICS*/
-//With the 'where' keyword, you can make it so the variable type T has to specifically extend from a class
-//Or else the compiler will reject it. In the below example, T must be extended from BaseAction
-public class MyClass
-{
-    private int i;
-
-    public MyClass(int i) 
-    {
-        this.i = i;
-        Debug.Log(i);
-    }
-
-    public void Testing<T>(T t) 
-    {
-        Debug.Log(t);
-    }
-}
+        }        
+*/

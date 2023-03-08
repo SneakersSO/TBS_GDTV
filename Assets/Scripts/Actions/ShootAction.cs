@@ -20,6 +20,7 @@ public class ShootAction : BaseAction
     }
     private State state;
     [SerializeField] private int maxShootDistance = 7;
+    [SerializeField] private LayerMask obstaclesLayerMask;
     private float stateTimer;
 
     private Unit targetUnit;
@@ -120,6 +121,22 @@ public class ShootAction : BaseAction
                     // Both Units on same 'team'
                     continue;
                 }
+
+                /*Conduct a raycast from the shoulder height offset of the unit to the GridPosition in the list
+                of positions to the targetUnit position. If there is an obstacle with the layer mask set to Obstacle
+                in this Raycast, then we skip this being a valid position to take the action in*/
+                Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+                Vector3 shootDir = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+                float unitShoulderHeight = 1.7f;
+                if (Physics.Raycast(
+                    unitWorldPosition + Vector3.up * unitShoulderHeight,
+                    shootDir, 
+                    Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+                    obstaclesLayerMask))
+                    {
+                        //Shoot Action is being blocked by an obstacle
+                        continue;
+                    }
 
                 validGridPositionList.Add(testGridPosition);
             }
