@@ -1,0 +1,13 @@
+fileFormatVersion: 2
+guid: 0f07a5637e3874e448466d92b31e603c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - crateDestroyedPrefab: {fileID: 6860725308662920244, guid: 15a916f5103ef2c4f83b2362a0682f6e,
+      type: 3}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
