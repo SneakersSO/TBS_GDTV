@@ -18,9 +18,6 @@ public class Pathfinding : MonoBehaviour
 
     private void Awake() 
     {
-        gridSystem = new GridSystem<PathNode>(10, 10, 2f,(GridSystem<PathNode> gameObject, GridPosition gridPosition) => new PathNode(gridPosition));
-        gridSystem.CreateDebugObjects(gridDebugObjectPrefab);
-
         if (Instance != null)
         {
             Debug.LogError($"There's more than one Pathfinding System! {transform} - {Instance}");

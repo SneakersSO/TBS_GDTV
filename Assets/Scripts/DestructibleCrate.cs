@@ -18,7 +18,7 @@ public class DestructibleCrate : MonoBehaviour
     {
         Transform crateDestroyedTransform = Instantiate(crateDestroyedPrefab, transform.position, transform.rotation);
 
-        ApplyExplosionToChildren(crateDestroyedPrefab, 150f, transform.position, 10f); 
+        ApplyExplosionToChildren(crateDestroyedPrefab, 450f, transform.position, 10f); 
         Destroy(gameObject);
 
         OnAnyDestroyed?.Invoke(this, EventArgs.Empty);

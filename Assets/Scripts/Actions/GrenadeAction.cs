@@ -56,7 +56,7 @@ public class GrenadeAction : BaseAction
         Transform grenadeProjectileTransform = Instantiate(grenadeProjectilePrefab, unit.GetWorldPosition(), Quaternion.identity);
         GrenadeProjectile grenadeProjectile = grenadeProjectileTransform.GetComponent<GrenadeProjectile>();
         grenadeProjectile.Setup(gridPosition, OnGrenadeBehaviorComplete);
-        Debug.Log("GrenadeAction");
+
         ActionStart(onActionComplete);
     }
 
