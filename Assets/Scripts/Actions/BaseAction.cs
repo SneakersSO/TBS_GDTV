@@ -18,6 +18,7 @@ public abstract class BaseAction : MonoBehaviour
 
     public abstract string GetActionName();
     public abstract void TakeAction(GridPosition gridPosition, Action onActionComplete);
+    public abstract EnemyAIAction GetEnemyAIAction(GridPosition gridPosition);
 
     public virtual bool IsValidActionGridPosition(GridPosition gridPosition)
     {
@@ -72,7 +73,7 @@ public abstract class BaseAction : MonoBehaviour
         
     }
 
-    public abstract EnemyAIAction GetEnemyAIAction(GridPosition gridPosition);
+    
 
     public Unit GetOwningUnit() => unit;
     
